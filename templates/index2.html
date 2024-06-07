@@ -6,16 +6,30 @@
     <title>Control Page 2</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; }
-        .button { padding: 20px; margin: 10px; background-color: #ccc; border: none; cursor: pointer; }
-        .active { background-color: #4CAF50; color: white; }
+        .button { 
+            padding: 20px; margin: 10px; background-color: #ccc; border: none; 
+            cursor: pointer; width: 80px; height: 80px;
+        }
+        .button.active { background-color: #4CAF50; color: white; }
+        .cross {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            justify-items: center;
+        }
     </style>
 </head>
 <body>
     <h1>Control Page 2</h1>
-    <button class="button" id="pin5" onclick="togglePin('pin5')">Pin 5</button>
-    <button class="button" id="pin6" onclick="togglePin('pin6')">Pin 6</button>
-    <button class="button" id="pin7" onclick="togglePin('pin7')">Pin 7</button>
-    <button class="button" id="pin8" onclick="togglePin('pin8')">Pin 8</button>
+    <div class="cross">
+        <button class="button" id="up" onclick="togglePin('up')">⇧</button>
+        <div></div>
+        <button class="button" id="right" onclick="togglePin('right')">⇨</button>
+        <div></div>
+        <button class="button" id="down" onclick="togglePin('down')">⇩</button>
+        <div></div>
+        <button class="button" id="left" onclick="togglePin('left')">⇦</button>
+    </div>
     <script>
         function togglePin(pin) {
             fetch('/control', {

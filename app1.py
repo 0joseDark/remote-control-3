@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # pip install flask
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
 import RPi.GPIO as GPIO
 
 app = Flask(__name__)
@@ -10,10 +10,10 @@ app = Flask(__name__)
 # Configuração dos pinos GPIO
 GPIO.setmode(GPIO.BCM)
 pins = {
-    'pin1': 17,
-    'pin2': 18,
-    'pin3': 27,
-    'pin4': 22
+    'up': 17,
+    'down': 18,
+    'left': 27,
+    'right': 22
 }
 
 for pin in pins.values():
