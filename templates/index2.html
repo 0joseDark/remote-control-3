@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Page 2</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .button { padding: 20px; margin: 10px; background-color: #ccc; border: none; cursor: pointer; }
+        .active { background-color: #4CAF50; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Control Page 2</h1>
+    <button class="button" id="pin5" onclick="togglePin('pin5')">Pin 5</button>
+    <button class="button" id="pin6" onclick="togglePin('pin6')">Pin 6</button>
+    <button class="button" id="pin7" onclick="togglePin('pin7')">Pin 7</button>
+    <button class="button" id="pin8" onclick="togglePin('pin8')">Pin 8</button>
+    <script>
+        function togglePin(pin) {
+            fetch('/control', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ command: pin })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    const button = document.getElementById(pin);
+                    button.classList.toggle('active', data.state === 1);
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
